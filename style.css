@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap");
+
+:root {
+  --card-size: 100px;
+  --rich-black: #00171f;
+  --prussian-blue: #003459;
+  --cerulean: #007ea7;
+}
+
+* {
+  font-family: "Outfit", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background: var(--cerulean);
+  color: #fff;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, var(--card-size));
+  gap: 20px;
+}
+
+.card {
+  width: var(--card-size);
+  aspect-ratio: 1/1;
+  position: relative;
+  perspective: 500px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.card img {
+  width: var(--card-size);
+  height: var(--card-size);
+  object-fit: cover;
+  position: absolute;
+  transition: 0.3s;
+  backface-visibility: hidden;
+  border: 3px solid var(--rich-black);
+  border-radius: 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
+  background: #fff;
+}
+
+.front {
+  transform: rotateY(180deg);
+}
+
+.back,
+.card.flipped .front {
+  transform: rotateY(0deg);
+}
+
+.card.flipped .back {
+  transform: rotateY(-180deg);
+}
+
+.modal:not([hidden]) {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: var(--prussian-blue);
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 20px;
+}
+
+.modal h3 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.modal p {
+  font-size: 1.25rem;
+}
+
+.modal button {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  background: var(--cerulean);
+  color: #fff;
+  transition: 0.3s;
+  font-size: 1rem;
+  text-transform: uppercase;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
+}
+
+.modal button:active,
+.modal button:hover {
+  background: var(--rich-black);
+}
